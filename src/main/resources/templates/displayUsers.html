@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Users Info</title>
+<link rel="stylesheet" th:href="@{/css/displayUser.css}">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Audiowide">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Sofia">
+</head>
+<body>
+	<section id="Header">
+		<div class="header">
+				<img src="Feature images/SHopNest-LOGO-removebg-preview.png" alt="" class="logo">
+		
+			<div class="header-user">
+				<h1>ShopNest Customer's Information</h1>
+			</div>
+			<div class="header-last">
+
+				<a class="logout" href="adminPage">Back</a>
+			</div>
+		</div>
+
+	</section>
+
+	<div class="table-container">
+		<table border="1">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>User Name</th>
+					<th>Email</th>
+					<th>Phone Number</th>
+					<th>Gender</th>
+					<th>Address</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="user : ${users}">
+					<td th:text="${user.id}"></td>
+					<td th:text="${user.userName}"></td>
+					<td th:text="${user.email}"></td>
+					<td th:text="'+91 ' +${user.phoneNumber}"></td>
+					<td th:text="${user.gender}"></td>
+					<td th:text="${user.address}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+</body>
+</html>

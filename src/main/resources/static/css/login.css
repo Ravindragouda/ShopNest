@@ -1,0 +1,115 @@
+/* login.css */
+
+/* Reset default margin and padding */
+body, html {
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8;
+}
+
+/* Style the header */
+.header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 9em;
+	padding-bottom: 40px;
+}
+
+.header img {
+	position: relative;
+	max-width: 280px;
+	max-height: 280px;
+}
+
+
+/* Style the body content */
+.body-content {
+    max-width: 850px;
+    margin: 0 auto;
+
+    background-color: #ffffff;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-top: 5em;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;flex-direction: row;
+    gap:5px;
+}
+
+.body-content img {
+	margin-left:-50px;
+	max-width: 400px;
+	max-height: 400px;
+}
+.left-side{
+	   max-height:650px;
+
+}
+.right-side{
+	padding: 30px;
+	 
+}
+
+/* Style the header inside the body content */
+.body-content header {
+   font-family: cursive;
+    text-align: center;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px #f8f8f8;
+}
+
+/* Style the form elements */
+form {
+    text-align: center;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    font-family: monospace;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+       font-family: cursive;
+}
+
+input[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 15px 20px;
+    cursor: pointer;
+    font-size: 16px;
+       font-family: cursive;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Style the "Sign Up" link */
+a {
+    display: block;
+    margin-top: 20px;
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/register.css}"> 
+    <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Sofia&effect=neon|outline|emboss|shadow-multiple">
+    
+</head>
+<body>
+    <div class="container">
+    <div class="head">
+    <a href="index"> <img src="Feature images/SHopNest-LOGO-removebg-preview.png" alt="" class="logo"> </a>
+    
+        <h1 class="shopnest">Welcome to <span>ShopNest</span> Register page</h1>
+        <p class="unique-msg">Unlock a world of shopping delights <br/><span>
+        	
+        	Register now for personalized recommendations and unbeatable savings!</span></p>
+    </div>
+       
+	<div class="body">
+	<form action="register" method="post">
+            <label>Name</label><br>
+            <input type="text" placeholder="Username" name="userName"><br>
+            
+            <label>Password</label><br>
+            <input type="password" placeholder="password" name="password"><br>
+            
+            <label>E-mail</label><br>
+            <input type="text" name="email" /><br>
+            
+            <label>Phone Number</label><br>
+            <input type="text" name="phoneNumber" /><br>
+            
+            <label>Gender</label><br>
+            <input type="radio" name="gender" value="male" /> Male
+            <input type="radio" name="gender" value="Female" /> Female
+            <input type="radio" name="gender" value="Other" /> Other<br>
+            
+            <label>Role</label><br>
+            <input type="radio" name="role" value="admin" /> Admin
+            <input type="radio" name="role" value="customer" /> Customer<br>
+            
+            <label>Address</label><br>
+            <textarea name="address"></textarea><br>
+            
+            <input type="submit" value="Sign up" />
+            <p>Already have an account? <a href="login">Login here</a></p>
+        </form>
+	</div>
+        
+    </div>
+</body>
+</html>

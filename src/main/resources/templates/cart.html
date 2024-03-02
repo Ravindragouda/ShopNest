@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shopping Cart</title>
+<link rel="stylesheet" th:href="@{/css/cart.css}">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Audiowide">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Sofia">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+<body>
+	<div class="header-first">
+		<a href="customerPage">ShopNest</a>
+	</div>
+	<div class="data-container">
+		<div class="cart-container">
+			<div class="product-section">
+				<div class="cart-item" th:each="product, cartIndex : ${cart}">
+					<div class="item-image">
+						<img alt="None" th:src="@{'/images/' + ${product.image}}">
+					</div>
+					<div class="item-details">
+						<h2 th:text="${product.productName}"></h2>
+						<p th:text="${product.description}"></p>
+						<p th:text="'Price: ₹' + ${product.price}"></p>
+						<form action="/deleteItem" method="post">
+							<input type="hidden" th:value="${product.id}"
+								name="deleteProduct">
+							<button type="submit">
+								<i class="fas fa-trash-alt"></i> Remove
+							</button>
+						</form>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="payment-section">
+			<h4>Order details</h4>
+			<div>
+				<p>Cart total <span th:text="'₹'+${totalPrice}"></span></p>
+				<p>Convenience Fee What's this?</p>
+				<p>Delivery Fee <span>Free <del>₹90</del></span></p>
+				<p>Platform Fee <span><del>₹29</del></span></p>
+				<p>Order Total <span th:text="'₹'+${totalPrice}"></span></p>
+			</div>
+		
+				<a class="checkout-btn" href="paymentPage">PROCEED TO SHIPPING</a>
+		</div>
+	</div>
+</body>
+
+	
+</html>

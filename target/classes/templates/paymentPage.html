@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Payment Page</title>
+<link rel="stylesheet" th:href="@{/css/paymentPage.css}">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Audiowide">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Sofia">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+<body>
+
+
+	<div class="header-first">
+		<a href="cart">ShopNest</a>
+	</div>
+
+	<div class="shipping-details">
+
+		<form id="shipping-address-form">
+			<h4>
+				<i class="fas fa-truck"></i> Delivery Address <br>
+				
+				<span>We will 
+					deliver your order to this address</span>
+			</h4>
+			<div>
+				<label for="name">Name:</label> <input type="text" id="name"
+					name="name" required>
+			</div>
+			<div>
+				<label for="address">Address:</label>
+				<textarea id="address" name="address" required></textarea>
+			</div>
+			<div>
+				<label for="email">Email:</label> <input type="email" id="email"
+					name="email" required>
+			</div>
+			<div>
+				<label for="phone">Phone:</label> <input type="text" id="phone"
+					name="phone" required>
+			</div>
+		</form>
+		
+		<div class="payment-section">
+			<h4>Order details</h4>
+			<div>
+				<p>
+					Bag total <span th:text="'₹'+${totalPrice}"></span>
+				</p>
+				<p>Convenience Fee What's this?</p>
+				<p>
+					Delivery Fee <span>Free <del>₹90</del></span>
+				</p>
+				<p>
+					Platform Fee <span><del>₹29</del></span>
+				</p>
+				<p>
+					Order Total <span th:text="'₹'+${totalPrice}"></span>
+				</p>
+			</div>
+
+			<form id="payment-form">
+				<button type="button" class="checkout-btn">Pay</button>
+
+			</form>
+
+
+		</div>
+		
+	</div>
+	<div class="data-container">
+
+
+		<div class="cart-container">
+			<div class="product-section">
+				<div class="cart-item" th:each="product, cartIndex : ${cart}">
+					<div class="item-image">
+						<img alt="None" th:src="@{'/images/' + ${product.image}}">
+					</div>
+					<div class="item-details">
+						<h2 th:text="${product.productName}"></h2>
+						<p th:text="'Price: ₹' + ${product.price}"></p>
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+			</div>
+
+</body>
+
+<script>
+	$(document).ready(function() {
+		$(".checkout-btn").click(function(e) {
+			e.preventDefault();
+			createOrder();
+		});
+	});
+
+	function createOrder() {
+		$.get("/cart/totalPrice").done(function(totalPrice) {
+			var options = {
+				"key" : "rzp_test_MMd2bgsAvEvjuq",
+				"amount" : totalPrice.toString(),
+				"currency" : "INR",
+				"name" : "ShopNest",
+				"description" : "Test Transaction",
+				"handler" : function(response) {
+					// Handle payment success
+					handlePaymentSuccess();
+				},
+				"prefill" : {
+					"name" : "Your Name",
+					"email" : "test@example.com",
+					"contact" : "9999999999"
+				},
+				"notes" : {
+					"address" : "Your Address"
+				},
+				"theme" : {
+					"color" : "#F37254"
+				}
+			};
+			var rzp1 = new Razorpay(options);
+			rzp1.open();
+		}).fail(function(error) {
+			console.error("Error:", error);
+		});
+	}
+	function verifyPayment(orderId, paymentId, signature) {
+		$.post("/verify", {
+			orderId : orderId,
+			paymentId : paymentId,
+			signature : signature
+		}).done(function(isValid) {
+			if (isValid) {
+				handlePaymentSuccess();
+			} else {
+				alert("Payment failed");
+				window.location.href = 'payment-failure';
+			}
+		}).fail(function(error) {
+			console.log("Error occurred:", error);
+		});
+	}
+
+	function handlePaymentSuccess() {
+		alert("Order Placed successfully. Explore More Products");
+		//Redirect to payment success page or perform other actions
+		window.location.href = 'http://localhost:8080/cart';
+	}
+</script>
+</html>

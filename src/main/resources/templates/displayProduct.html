@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Product Display</title>
+<link rel="stylesheet" th:href="@{/css/displayProduct.css}">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Audiowide">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Sofia">
+</head>
+<body>
+	<section id="Header">
+		<div class="header">
+			<div class="header-first">
+				<a href="displayProduct"><h1>ShopNest</h1></a>
+			</div>
+			<div class="header-center">
+				<form action="/searchItem" method="GET">
+					<input type="text" name="keyword"
+						placeholder="Search for products...">
+					<button type="submit">Search</button>
+				</form>
+			</div>
+			<div class="header-last">
+
+				<a class="logout" href="adminPage">Back</a>
+			</div>
+		</div>
+
+	</section>
+
+
+	<div class="grid-container">
+		<div class="product-card" th:each="product : ${products}">
+			<div class="info">
+				<div class="details">
+					<img alt="None" th:src="@{'/images/' + ${product.image}}">
+					<h3 th:text="${product.productName}">productName</h3>
+					<p th:text="${product.description}">description</p>
+				</div>
+
+				<div class="price">
+					<p th:text="'₹'+${product.price}">price</p>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</body>
+</html>

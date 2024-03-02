@@ -1,0 +1,93 @@
+@charset "ISO-8859-1";
+.container {
+    width: 50%;
+    margin: 0 auto;
+    padding-top: 50px;
+    text-align: center;
+}
+body{
+	background-color: #f8f8f8;
+}
+.logo {
+    width: 220px;
+    position: absolute;
+    left: 20px;
+}
+
+h1 {
+	padding-top:10px;
+    color: #d50000;font-family: Arial, sans-serif;
+} .shopnest span{
+	color: black;
+}
+
+.unique-msg {
+    color: #800000;
+    font-style: italic;
+    font-family: cursive;
+}
+.head{
+	position: fixed;
+	top:0;
+	right: 0;
+	left: 0;
+	background-color: white;
+}
+.body{
+	margin-top: 6em;
+}
+form {
+	
+    text-align: left;
+    margin-top: 20px;
+    color: black;
+}
+
+label {
+	
+    display: block;
+    margin-bottom: 3px;
+    color: black;
+}
+
+input[type="text"],
+input[type="password"],
+textarea {
+    width: 80%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+input[type="radio"] {
+    margin-right: 5px;
+}
+
+input[type="submit"] {
+   background-color: #007bff;
+    color: rgb(255, 255, 255);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover {
+   background-color: #0056b3;
+}
+
+p {
+    margin-top: 10px;
+    color: black;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}

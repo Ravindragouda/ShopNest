@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Customer Page</title>
+<link rel="stylesheet" th:href="@{/css/displayProduct.css}">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Audiowide">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Sofia">
+	 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+	 
+	
+</head>
+<body>
+	<section id="Header">
+		<div class="header">
+			<div class="header-first">
+				<a href="customerPage"><h1>ShopNest</h1></a>
+			</div>
+			<div class="header-center">
+				<form action="/searchItem" method="GET">
+					<input type="text" name="keyword"
+						placeholder="Search for products...">
+					<button type="submit">Search</button>
+				</form>
+			</div>
+			<div class="header-last">
+				<a href="/cart">Cart <i class="fas fa-cart-plus"></i></a>
+				<a href="/orders">View Orders</a>
+				<a class="logout" href="login">Logout</a>
+			</div>
+		</div>
+	</section>
+	
+	
+	<div class="live-sale-container">
+        <div class="live-sale-item">
+			<MARQUEE behavior="scroll" direction="left" width="100%">
+
+			<img src="Feature images/bbd-live-ajio2.jpeg" alt="Live Sale Product 1">
+			</MARQUEE>
+        </div>
+        <div class="live-sale-item">
+			<MARQUEE behavior="scroll" direction="right" width="100%">
+
+			<img src="Feature images/bbd-live-ajio1.jpeg" alt="Live Sale Product 2">
+			</MARQUEE>
+        </div>
+        <div class="live-sale-item">
+            <img src="Feature images/bbd-live-ajio3.jpeg" alt="Live Sale Product 2">
+        </div>
+        <div class="live-sale-item">
+            <img src="Feature images/bbd-live-ajio4.jpeg" alt="Live Sale Product 2">
+        </div>
+        
+    </div>
+
+	<div class="grid-container">
+		<div class="product-card" th:each="product : ${products}">
+			<div class="info">
+				<div class="details">
+					<img alt="None" th:src="@{'/images/' + ${product.image}}">
+					<h3 th:text="${product.productName}"></h3>
+					<p th:text="${product.description}"></p>
+				</div>
+				<div class="price">
+					<p th:text="'₹'+${product.price}"></p>
+					<form th:action="@{'/addToCart/' + ${product.id}}" method="get">
+						<input type="hidden" name="productId" th:value="${product.id}" />
+						<button type="submit" class="cart-link"><i class="fas fa-cart-plus"></i></button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<footer>
+        <p>© 2024 ShopNest. All rights reserved.</p>
+    </footer>
+</body>
+</html>
